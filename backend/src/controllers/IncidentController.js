@@ -8,7 +8,7 @@ module.exports = {
         const [count] = await connection('incidents').count(); //conta quantos registros existem (variavel entre colchetes pq o resultado é um array, poderia ser count[0])
         
         const incidents = await connection('incidents')
-            .join('ongs', 'ong_id', '=', 'incidents.ong_id')
+            .join('ongs', 'ongs.id', '=', 'incidents.ong_id')
             .limit(5) //paginação
             .offset((page - 1) * 5)//qual registro ele vai iniciar o select (0,5,10...)
             .select(['incidents.*', 
